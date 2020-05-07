@@ -1,0 +1,51 @@
+
+BenchmarkDotNet=v0.12.0, OS=raspbian 10
+ARMv7 Processor rev 3 (v7l), 4 logical cores
+.NET Core SDK=3.1.100
+  [Host]     : .NET Core 3.1.0 (CoreCLR 4.700.19.56402, CoreFX 4.700.19.56404), Arm RyuJIT
+  Job-BNVRZV : .NET Core 3.1.0 (CoreCLR 4.700.19.56106, CoreFX 4.700.19.56202), Arm RyuJIT
+
+Runtime=.NET Core 3.1  
+
+                                    Method |      find |         Mean |       Error |      StdDev |       Median |   Gen 0 | Gen 1 | Gen 2 | Allocated |
+------------------------------------------ |---------- |-------------:|------------:|------------:|-------------:|--------:|------:|------:|----------:|
+                           FindWithForLoop |   Person9 |     270.6 ns |     0.40 ns |     0.37 ns |     270.5 ns |       - |     - |     - |         - |
+                       FindWithForEachLoop |   Person9 |     297.1 ns |     0.20 ns |     0.19 ns |     297.0 ns |       - |     - |     - |         - |
+                       FindWithForEachLoop | Person100 |     964.8 ns |     1.16 ns |     1.08 ns |     965.2 ns |       - |     - |     - |         - |
+                           FindWithForLoop | Person100 |   1,066.0 ns |     0.95 ns |     0.84 ns |   1,066.5 ns |       - |     - |     - |         - |
+                           FindWithForLoop |  Person42 |   1,088.9 ns |     0.88 ns |     0.74 ns |   1,088.8 ns |       - |     - |     - |         - |
+                       FindWithForEachLoop |  Person42 |   1,094.8 ns |     1.33 ns |     1.11 ns |   1,094.6 ns |       - |     - |     - |         - |
+                FindWithLinqFirstOrDefault |   Person9 |   1,106.7 ns |     3.49 ns |     3.26 ns |   1,105.8 ns |  0.3662 |     - |     - |      60 B |
+                          FindWithLinqFind |   Person9 |   1,728.2 ns |    12.78 ns |    11.33 ns |   1,725.7 ns |  2.9068 |     - |     - |     476 B |
+                           FindWithForLoop |  Person75 |   2,061.2 ns |     1.72 ns |     1.61 ns |   2,060.9 ns |       - |     - |     - |         - |
+                       FindWithForEachLoop |  Person75 |   2,071.0 ns |     1.41 ns |     1.25 ns |   2,070.5 ns |       - |     - |     - |         - |
+                FindWithLinqFirstOrDefault |  Person42 |   2,207.1 ns |     6.82 ns |     5.69 ns |   2,207.6 ns |  0.3662 |     - |     - |      60 B |
+                          FindWithLinqFind |  Person42 |   2,689.3 ns |    12.14 ns |    11.36 ns |   2,682.8 ns |  2.9068 |     - |     - |     476 B |
+                          FindWithLinqFind | Person100 |   3,518.8 ns |     7.28 ns |     6.45 ns |   3,521.1 ns |  2.9068 |     - |     - |     476 B |
+                          FindWithLinqFind |  Person75 |   4,697.0 ns |    19.82 ns |    18.54 ns |   4,689.6 ns |  2.9068 |     - |     - |     476 B |
+ FindByManualParallelTasksByProcessorCount |   Person9 |   5,452.3 ns |    35.34 ns |    33.06 ns |   5,443.3 ns |  4.6844 |     - |     - |     767 B |
+ FindByManualParallelTasksByProcessorCount | Person100 |   6,360.7 ns |    33.55 ns |    31.38 ns |   6,347.2 ns |  4.6844 |     - |     - |     767 B |
+                FindWithLinqFirstOrDefault |  Person75 |   6,657.4 ns |     5.64 ns |     5.27 ns |   6,656.1 ns |  0.3662 |     - |     - |      60 B |
+ FindByManualParallelTasksByProcessorCount |  Person42 |   7,074.8 ns |    25.01 ns |    22.17 ns |   7,069.6 ns |  4.6844 |     - |     - |     767 B |
+                FindWithLinqFirstOrDefault | Person100 |   7,489.3 ns |    31.36 ns |    27.80 ns |   7,480.4 ns |  0.3662 |     - |     - |      60 B |
+ FindByManualParallelTasksByProcessorCount |  Person75 |   7,493.9 ns |    31.17 ns |    29.15 ns |   7,482.4 ns |  4.6844 |     - |     - |     767 B |
+        FindByManualParallelTasksBy20Count |   Person9 |  12,398.3 ns |    70.45 ns |    65.90 ns |  12,399.5 ns | 10.5438 |     - |     - |    1725 B |
+        FindByManualParallelTasksBy20Count |  Person42 |  15,750.2 ns |   133.72 ns |   125.08 ns |  15,687.1 ns | 10.5286 |     - |     - |    1726 B |
+        FindByManualParallelTasksBy20Count | Person100 |  17,009.6 ns |   131.49 ns |   116.56 ns |  16,955.3 ns | 10.5286 |     - |     - |    1726 B |
+        FindByManualParallelTasksBy20Count |  Person75 |  17,555.1 ns |    91.24 ns |    85.35 ns |  17,520.6 ns | 10.5286 |     - |     - |    1726 B |
+                       FindWithParallelFor |   Person9 |  22,876.5 ns |   494.14 ns |   797.95 ns |  22,588.0 ns |  8.6365 |     - |     - |    1249 B |
+        FindByManualParallelTasksBy50Count |   Person9 |  25,979.8 ns |   195.05 ns |   182.45 ns |  25,897.4 ns | 21.5149 |     - |     - |    3523 B |
+                       FindWithParallelFor |  Person42 |  27,913.5 ns |   556.72 ns | 1,632.77 ns |  27,366.1 ns | 10.1929 |     - |     - |    1422 B |
+                       FindWithParallelFor |  Person75 |  31,756.4 ns | 1,589.00 ns | 4,660.28 ns |  30,400.2 ns | 10.5591 |     - |     - |    1497 B |
+        FindByManualParallelTasksBy50Count |  Person42 |  32,715.2 ns |   238.90 ns |   223.47 ns |  32,625.8 ns | 21.4844 |     - |     - |    3523 B |
+                       FindWithParallelFor | Person100 |  34,334.3 ns | 2,012.76 ns | 5,807.26 ns |  32,422.1 ns | 10.3149 |     - |     - |    1475 B |
+        FindByManualParallelTasksBy50Count | Person100 |  36,875.1 ns |   205.12 ns |   181.84 ns |  36,813.7 ns | 21.4844 |     - |     - |    3523 B |
+        FindByManualParallelTasksBy50Count |  Person75 |  37,679.2 ns |   254.89 ns |   238.43 ns |  37,602.5 ns | 21.4844 |     - |     - |    3523 B |
+       FindByManualParallelTasksBy100Count |   Person9 |  49,481.2 ns |   209.80 ns |   196.25 ns |  49,440.3 ns | 39.7949 |     - |     - |    6518 B |
+       FindByManualParallelTasksBy100Count |  Person42 |  64,369.3 ns |   359.73 ns |   336.49 ns |  64,186.3 ns | 39.7949 |     - |     - |    6518 B |
+       FindByManualParallelTasksBy100Count |  Person75 |  69,816.3 ns |   657.60 ns |   615.12 ns |  69,511.8 ns | 39.7949 |     - |     - |    6518 B |
+       FindByManualParallelTasksBy100Count | Person100 |  71,251.7 ns |   494.11 ns |   438.02 ns |  70,991.0 ns | 39.7949 |     - |     - |    6518 B |
+       FindByManualParallelTasksBy200Count |   Person9 | 158,663.9 ns |   828.78 ns |   775.24 ns | 158,370.2 ns | 71.2891 |     - |     - |   11785 B |
+       FindByManualParallelTasksBy200Count | Person100 | 160,312.9 ns |   914.79 ns |   810.94 ns | 160,136.0 ns | 71.2891 |     - |     - |   11785 B |
+       FindByManualParallelTasksBy200Count |  Person75 | 163,588.8 ns |   683.82 ns |   639.64 ns | 163,205.0 ns | 71.2891 |     - |     - |   11785 B |
+       FindByManualParallelTasksBy200Count |  Person42 | 167,413.5 ns |   935.57 ns |   875.13 ns | 167,124.4 ns | 71.2891 |     - |     - |   11785 B |

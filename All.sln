@@ -1,0 +1,80 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{C037CA58-2736-4577-9865-F3F13B596DCF}"
+	ProjectSection(SolutionItems) = preProject
+		docs\AssembleAndBurnOS.md = docs\AssembleAndBurnOS.md
+		docs\HeadlessSetup.md = docs\HeadlessSetup.md
+		docs\HowDoesDotnetCorePerform.md = docs\HowDoesDotnetCorePerform.md
+		docs\HowDoesDotnetCorePerformListSearches.md = docs\HowDoesDotnetCorePerformListSearches.md
+		docs\InstallDocker.md = docs\InstallDocker.md
+		docs\InstallDotNetCore.md = docs\InstallDotNetCore.md
+		docs\RaspberryPi4-dotnet.pptx = docs\RaspberryPi4-dotnet.pptx
+		docs\RunPublishedDotNetCoreApp.md = docs\RunPublishedDotNetCoreApp.md
+		docs\RunTechEmpowerBenchmarks.md = docs\RunTechEmpowerBenchmarks.md
+		docs\SampleDotNetCoreWebSite.md = docs\SampleDotNetCoreWebSite.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{35062402-15C7-4DB5-B541-2BD0E68BD28D}"
+	ProjectSection(SolutionItems) = preProject
+		docs\images\FormatSDCardWindows_64GB.PNG = docs\images\FormatSDCardWindows_64GB.PNG
+		docs\images\RaspberryPi4BoardLayout.png = docs\images\RaspberryPi4BoardLayout.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0516C2B2-A239-4B8A-B2C7-9F580D431ADD}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1F2FFDB6-ACA5-49FD-8209-191612CCCA54}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "fastishFind", "fastishFind", "{E89F8FE1-802A-4236-B3C8-5D63E3E2EAA6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "benchmarkFastishFind", "src\performanceTesting\benchmarkFastishFind\benchmarkFastishFind\benchmarkFastishFind.csproj", "{D3C2A836-122A-4D69-903F-E100AEF2E576}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "benchmarkFastishFindTests", "src\performanceTesting\benchmarkFastishFind\benchmarkFastishFindTests\benchmarkFastishFindTests.csproj", "{EEEEF292-1555-4590-945B-1924CCA421CE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "helloworld", "src\helloworld\helloworld.csproj", "{F0C109AC-9532-4A60-B5FF-A18A3316F73A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringMutatePerformance", "src\StringMutationPerformance\StringMutatePerformance\StringMutatePerformance.csproj", "{2B5A01DA-8864-4643-9B72-152CBE0A29A5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D3C2A836-122A-4D69-903F-E100AEF2E576}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3C2A836-122A-4D69-903F-E100AEF2E576}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3C2A836-122A-4D69-903F-E100AEF2E576}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3C2A836-122A-4D69-903F-E100AEF2E576}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEEEF292-1555-4590-945B-1924CCA421CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEEEF292-1555-4590-945B-1924CCA421CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEEEF292-1555-4590-945B-1924CCA421CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEEEF292-1555-4590-945B-1924CCA421CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0C109AC-9532-4A60-B5FF-A18A3316F73A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0C109AC-9532-4A60-B5FF-A18A3316F73A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0C109AC-9532-4A60-B5FF-A18A3316F73A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0C109AC-9532-4A60-B5FF-A18A3316F73A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B5A01DA-8864-4643-9B72-152CBE0A29A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B5A01DA-8864-4643-9B72-152CBE0A29A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B5A01DA-8864-4643-9B72-152CBE0A29A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B5A01DA-8864-4643-9B72-152CBE0A29A5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{35062402-15C7-4DB5-B541-2BD0E68BD28D} = {C037CA58-2736-4577-9865-F3F13B596DCF}
+		{E89F8FE1-802A-4236-B3C8-5D63E3E2EAA6} = {1F2FFDB6-ACA5-49FD-8209-191612CCCA54}
+		{D3C2A836-122A-4D69-903F-E100AEF2E576} = {E89F8FE1-802A-4236-B3C8-5D63E3E2EAA6}
+		{EEEEF292-1555-4590-945B-1924CCA421CE} = {E89F8FE1-802A-4236-B3C8-5D63E3E2EAA6}
+		{F0C109AC-9532-4A60-B5FF-A18A3316F73A} = {1F2FFDB6-ACA5-49FD-8209-191612CCCA54}
+		{2B5A01DA-8864-4643-9B72-152CBE0A29A5} = {1F2FFDB6-ACA5-49FD-8209-191612CCCA54}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FEFC32B7-06D9-4748-944B-18B14A866A2F}
+	EndGlobalSection
+EndGlobal

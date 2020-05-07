@@ -1,0 +1,52 @@
+---------------------------------------------------------
+ Running Primer json
+ wrk -H 'Host: tfb-server' -H 'Accept: application/json,text/html;q=0.9,application/xhtml+xml;q=0.9,application/xml;q=0.8,*/*;q=0.7' -H 'Connection: keep-alive' --latency -d 5 -c 8 --timeout 8 -t 8 http://tfb-server:8080/j
+---------------------------------------------------------
+/concurrency.sh: line 10:    10 Bus error               (core dumped) wrk -H "Host: $server_host" -H "Accept: $accept" -H "Connection: keep-alive" --latency -d 5 -c 8 --timeout 8 -t 8 $url
+---------------------------------------------------------
+ Running Warmup json
+ wrk -H 'Host: tfb-server' -H 'Accept: application/json,text/html;q=0.9,application/xhtml+xml;q=0.9,application/xml;q=0.8,*/*;q=0.7' -H 'Connection: keep-alive' --latency -d 15 -c 512 --timeout 8 -t 4 "http://tfb-server:8080/j"
+---------------------------------------------------------
+/concurrency.sh: line 19:    20 Bus error               (core dumped) wrk -H "Host: $server_host" -H "Accept: $accept" -H "Connection: keep-alive" --latency -d $duration -c $max_concurrency --timeout 8 -t $max_threads $url
+---------------------------------------------------------
+ Concurrency: 16 for json
+ wrk -H 'Host: tfb-server' -H 'Accept: application/json,text/html;q=0.9,application/xhtml+xml;q=0.9,application/xml;q=0.8,*/*;q=0.7' -H 'Connection: keep-alive' --latency -d 15 -c 16 --timeout 8 -t 4 "http://tfb-server:8080/j"
+---------------------------------------------------------
+/concurrency.sh: line 22:    27 Bus error               (core dumped) wrk -H "Host: $server_host" -H "Accept: $accept" -H "Connection: keep-alive" --latency -d $duration -c $c --timeout 8 -t "$(($c>$max_threads?$max_threads:$c))" $url
+STARTTIME 1589145106
+ENDTIME 1589145106
+---------------------------------------------------------
+ Concurrency: 32 for json
+ wrk -H 'Host: tfb-server' -H 'Accept: application/json,text/html;q=0.9,application/xhtml+xml;q=0.9,application/xml;q=0.8,*/*;q=0.7' -H 'Connection: keep-alive' --latency -d 15 -c 32 --timeout 8 -t 4 "http://tfb-server:8080/j"
+---------------------------------------------------------
+/concurrency.sh: line 22:    35 Bus error               (core dumped) wrk -H "Host: $server_host" -H "Accept: $accept" -H "Connection: keep-alive" --latency -d $duration -c $c --timeout 8 -t "$(($c>$max_threads?$max_threads:$c))" $url
+STARTTIME 1589145108
+ENDTIME 1589145108
+---------------------------------------------------------
+ Concurrency: 64 for json
+ wrk -H 'Host: tfb-server' -H 'Accept: application/json,text/html;q=0.9,application/xhtml+xml;q=0.9,application/xml;q=0.8,*/*;q=0.7' -H 'Connection: keep-alive' --latency -d 15 -c 64 --timeout 8 -t 4 "http://tfb-server:8080/j"
+---------------------------------------------------------
+/concurrency.sh: line 22:    43 Bus error               (core dumped) wrk -H "Host: $server_host" -H "Accept: $accept" -H "Connection: keep-alive" --latency -d $duration -c $c --timeout 8 -t "$(($c>$max_threads?$max_threads:$c))" $url
+STARTTIME 1589145110
+ENDTIME 1589145110
+---------------------------------------------------------
+ Concurrency: 128 for json
+ wrk -H 'Host: tfb-server' -H 'Accept: application/json,text/html;q=0.9,application/xhtml+xml;q=0.9,application/xml;q=0.8,*/*;q=0.7' -H 'Connection: keep-alive' --latency -d 15 -c 128 --timeout 8 -t 4 "http://tfb-server:8080/j"
+---------------------------------------------------------
+/concurrency.sh: line 22:    51 Bus error               (core dumped) wrk -H "Host: $server_host" -H "Accept: $accept" -H "Connection: keep-alive" --latency -d $duration -c $c --timeout 8 -t "$(($c>$max_threads?$max_threads:$c))" $url
+STARTTIME 1589145112
+ENDTIME 1589145114
+---------------------------------------------------------
+ Concurrency: 256 for json
+ wrk -H 'Host: tfb-server' -H 'Accept: application/json,text/html;q=0.9,application/xhtml+xml;q=0.9,application/xml;q=0.8,*/*;q=0.7' -H 'Connection: keep-alive' --latency -d 15 -c 256 --timeout 8 -t 4 "http://tfb-server:8080/j"
+---------------------------------------------------------
+/concurrency.sh: line 22:    59 Bus error               (core dumped) wrk -H "Host: $server_host" -H "Accept: $accept" -H "Connection: keep-alive" --latency -d $duration -c $c --timeout 8 -t "$(($c>$max_threads?$max_threads:$c))" $url
+STARTTIME 1589145116
+ENDTIME 1589145116
+---------------------------------------------------------
+ Concurrency: 512 for json
+ wrk -H 'Host: tfb-server' -H 'Accept: application/json,text/html;q=0.9,application/xhtml+xml;q=0.9,application/xml;q=0.8,*/*;q=0.7' -H 'Connection: keep-alive' --latency -d 15 -c 512 --timeout 8 -t 4 "http://tfb-server:8080/j"
+---------------------------------------------------------
+/concurrency.sh: line 22:    67 Bus error               (core dumped) wrk -H "Host: $server_host" -H "Accept: $accept" -H "Connection: keep-alive" --latency -d $duration -c $c --timeout 8 -t "$(($c>$max_threads?$max_threads:$c))" $url
+STARTTIME 1589145118
+ENDTIME 1589145119
