@@ -1,0 +1,38 @@
+---------------------------------------------------------
+ Running Primer plaintext
+ wrk -H 'Host: tfb-server' -H 'Accept: text/plain,text/html;q=0.9,application/xhtml+xml;q=0.9,application/xml;q=0.8,*/*;q=0.7' -H 'Connection: keep-alive' --latency -d 5 -c 8 --timeout 8 -t 8 http://tfb-server:8080/p
+---------------------------------------------------------
+/pipeline.sh: line 10:    12 Bus error               (core dumped) wrk -H "Host: $server_host" -H "Accept: $accept" -H "Connection: keep-alive" --latency -d 5 -c 8 --timeout 8 -t 8 $url
+---------------------------------------------------------
+ Running Warmup plaintext
+ wrk -H 'Host: tfb-server' -H 'Accept: text/plain,text/html;q=0.9,application/xhtml+xml;q=0.9,application/xml;q=0.8,*/*;q=0.7' -H 'Connection: keep-alive' --latency -d 15 -c 512 --timeout 8 -t 4 http://tfb-server:8080/p
+---------------------------------------------------------
+/pipeline.sh: line 19:    22 Bus error               (core dumped) wrk -H "Host: $server_host" -H "Accept: $accept" -H "Connection: keep-alive" --latency -d $duration -c $max_concurrency --timeout 8 -t $max_threads $url
+---------------------------------------------------------
+ Concurrency: 256 for plaintext
+ wrk -H 'Host: tfb-server' -H 'Accept: text/plain,text/html;q=0.9,application/xhtml+xml;q=0.9,application/xml;q=0.8,*/*;q=0.7' -H 'Connection: keep-alive' --latency -d 15 -c 256 --timeout 8 -t 4 http://tfb-server:8080/p -s pipeline.lua -- 16
+---------------------------------------------------------
+/pipeline.sh: line 22:    29 Bus error               (core dumped) wrk -H "Host: $server_host" -H "Accept: $accept" -H "Connection: keep-alive" --latency -d $duration -c $c --timeout 8 -t "$(($c>$max_threads?$max_threads:$c))" $url -s pipeline.lua -- $pipeline
+STARTTIME 1589145135
+ENDTIME 1589145145
+---------------------------------------------------------
+ Concurrency: 1024 for plaintext
+ wrk -H 'Host: tfb-server' -H 'Accept: text/plain,text/html;q=0.9,application/xhtml+xml;q=0.9,application/xml;q=0.8,*/*;q=0.7' -H 'Connection: keep-alive' --latency -d 15 -c 1024 --timeout 8 -t 4 http://tfb-server:8080/p -s pipeline.lua -- 16
+---------------------------------------------------------
+STARTTIME 1589145147
+/pipeline.sh: line 22:    37 Bus error               (core dumped) wrk -H "Host: $server_host" -H "Accept: $accept" -H "Connection: keep-alive" --latency -d $duration -c $c --timeout 8 -t "$(($c>$max_threads?$max_threads:$c))" $url -s pipeline.lua -- $pipeline
+ENDTIME 1589145148
+---------------------------------------------------------
+ Concurrency: 4096 for plaintext
+ wrk -H 'Host: tfb-server' -H 'Accept: text/plain,text/html;q=0.9,application/xhtml+xml;q=0.9,application/xml;q=0.8,*/*;q=0.7' -H 'Connection: keep-alive' --latency -d 15 -c 4096 --timeout 8 -t 4 http://tfb-server:8080/p -s pipeline.lua -- 16
+---------------------------------------------------------
+/pipeline.sh: line 22:    45 Bus error               (core dumped) wrk -H "Host: $server_host" -H "Accept: $accept" -H "Connection: keep-alive" --latency -d $duration -c $c --timeout 8 -t "$(($c>$max_threads?$max_threads:$c))" $url -s pipeline.lua -- $pipeline
+STARTTIME 1589145150
+ENDTIME 1589145173
+---------------------------------------------------------
+ Concurrency: 16384 for plaintext
+ wrk -H 'Host: tfb-server' -H 'Accept: text/plain,text/html;q=0.9,application/xhtml+xml;q=0.9,application/xml;q=0.8,*/*;q=0.7' -H 'Connection: keep-alive' --latency -d 15 -c 16384 --timeout 8 -t 4 http://tfb-server:8080/p -s pipeline.lua -- 16
+---------------------------------------------------------
+STARTTIME 1589145175
+/pipeline.sh: line 22:    53 Bus error               (core dumped) wrk -H "Host: $server_host" -H "Accept: $accept" -H "Connection: keep-alive" --latency -d $duration -c $c --timeout 8 -t "$(($c>$max_threads?$max_threads:$c))" $url -s pipeline.lua -- $pipeline
+ENDTIME 1589145211

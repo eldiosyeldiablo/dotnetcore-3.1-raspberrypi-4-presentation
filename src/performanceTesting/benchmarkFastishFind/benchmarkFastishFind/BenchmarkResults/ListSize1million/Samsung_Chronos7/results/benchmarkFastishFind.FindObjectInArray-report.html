@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>benchmarkFastishFind.FindObjectInArray-20200510-192651</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.12.0, OS=ubuntu 18.04
+Intel Core i7-3635QM CPU 2.40GHz (Ivy Bridge), 1 CPU, 8 logical and 4 physical cores
+.NET Core SDK=3.1.201
+  [Host]     : .NET Core 3.1.3 (CoreCLR 4.700.20.11803, CoreFX 4.700.20.12001), X64 RyuJIT
+  Job-PIKNFJ : .NET Core 3.1.3 (CoreCLR 4.700.20.11803, CoreFX 4.700.20.12001), X64 RyuJIT
+</code></pre>
+<pre><code>Runtime=.NET Core 3.1  
+</code></pre>
+
+<table>
+<thead><tr><th>                             Method</th><th>   find</th><th>      Mean</th><th>   Error</th><th>  StdDev</th><th>Gen 0</th><th>Gen 1</th><th>Gen 2</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>FindWithForLoop</td><td>Person9</td><td>64.26 ns</td><td>0.071 ns</td><td>0.066 ns</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>FindWithForEachLoop</td><td>Person9</td><td>72.38 ns</td><td>0.112 ns</td><td>0.104 ns</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>FindWithLinqFirstOrDefault</td><td>Person9</td><td>183.21 ns</td><td>0.421 ns</td><td>0.394 ns</td><td>0.0381</td><td>-</td><td>-</td><td>120 B</td>
+</tr><tr><td>FindWithParallelFor</td><td>Person9</td><td>2,921.88 ns</td><td>57.651 ns</td><td>115.136 ns</td><td>0.6447</td><td>-</td><td>-</td><td>2011 B</td>
+</tr><tr><td>FindWithForEachLoop</td><td>Person333342</td><td>3,011,433.34 ns</td><td>5,861.179 ns</td><td>5,482.550 ns</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>FindWithForLoop</td><td>Person333342</td><td>3,059,786.99 ns</td><td>9,519.270 ns</td><td>8,438.585 ns</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>FindWithParallelFor</td><td>Person333342</td><td>4,765,453.39 ns</td><td>90,461.195 ns</td><td>84,617.458 ns</td><td>-</td><td>-</td><td>-</td><td>3855 B</td>
+</tr><tr><td>FindWithLinqFirstOrDefault</td><td>Person333342</td><td>4,960,547.88 ns</td><td>13,474.803 ns</td><td>11,252.071 ns</td><td>-</td><td>-</td><td>-</td><td>120 B</td>
+</tr><tr><td>FindWithParallelFor</td><td>Person666675</td><td>5,061,684.11 ns</td><td>29,014.763 ns</td><td>27,140.427 ns</td><td>-</td><td>-</td><td>-</td><td>3803 B</td>
+</tr><tr><td>FindWithForEachLoop</td><td>Person666675</td><td>6,146,361.88 ns</td><td>15,667.122 ns</td><td>14,655.035 ns</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>FindWithForLoop</td><td>Person666675</td><td>6,242,970.37 ns</td><td>12,751.383 ns</td><td>11,303.769 ns</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>FindWithParallelFor</td><td>Person1000000</td><td>6,733,595.70 ns</td><td>22,115.859 ns</td><td>18,467.744 ns</td><td>-</td><td>-</td><td>-</td><td>3810 B</td>
+</tr><tr><td>FindWithForEachLoop</td><td>Person1000000</td><td>8,627,693.04 ns</td><td>23,616.794 ns</td><td>22,091.164 ns</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>FindWithForLoop</td><td>Person1000000</td><td>8,665,549.44 ns</td><td>17,500.931 ns</td><td>16,370.382 ns</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>FindWithLinqFind</td><td>Person9</td><td>9,474,986.43 ns</td><td>53,655.507 ns</td><td>47,564.210 ns</td><td>78.1250</td><td>78.1250</td><td>78.1250</td><td>8000144 B</td>
+</tr><tr><td>FindWithLinqFirstOrDefault</td><td>Person666675</td><td>9,857,605.16 ns</td><td>23,460.170 ns</td><td>20,796.829 ns</td><td>-</td><td>-</td><td>-</td><td>120 B</td>
+</tr><tr><td>FindByManualParallelTasksBy100Count</td><td>Person1000000</td><td>10,005,217.33 ns</td><td>62,044.864 ns</td><td>55,001.156 ns</td><td>2484.3750</td><td>-</td><td>-</td><td>8011392 B</td>
+</tr><tr><td>FindByManualParallelTasksBy100Count</td><td>Person9</td><td>10,155,230.70 ns</td><td>52,428.928 ns</td><td>40,933.058 ns</td><td>2484.3750</td><td>-</td><td>-</td><td>8011392 B</td>
+</tr><tr><td>FindByManualParallelTasksBy200Count</td><td>Person1000000</td><td>10,188,771.21 ns</td><td>65,581.110 ns</td><td>61,344.611 ns</td><td>2531.2500</td><td>-</td><td>-</td><td>8022592 B</td>
+</tr><tr><td>FindByManualParallelTasksBy200Count</td><td>Person9</td><td>10,340,253.10 ns</td><td>60,411.264 ns</td><td>53,553.012 ns</td><td>2531.2500</td><td>-</td><td>-</td><td>8022592 B</td>
+</tr><tr><td>FindByManualParallelTasksBy100Count</td><td>Person333342</td><td>10,590,305.45 ns</td><td>41,418.856 ns</td><td>38,743.223 ns</td><td>2484.3750</td><td>-</td><td>-</td><td>8011392 B</td>
+</tr><tr><td>FindByManualParallelTasksBy100Count</td><td>Person666675</td><td>10,650,769.98 ns</td><td>51,549.738 ns</td><td>45,697.500 ns</td><td>2484.3750</td><td>-</td><td>-</td><td>8011392 B</td>
+</tr><tr><td>FindByManualParallelTasksBy200Count</td><td>Person666675</td><td>10,856,170.16 ns</td><td>39,233.835 ns</td><td>36,699.353 ns</td><td>2531.2500</td><td>-</td><td>-</td><td>8022592 B</td>
+</tr><tr><td>FindByManualParallelTasksBy200Count</td><td>Person333342</td><td>10,948,668.44 ns</td><td>40,055.023 ns</td><td>37,467.493 ns</td><td>2531.2500</td><td>-</td><td>-</td><td>8022592 B</td>
+</tr><tr><td>FindWithLinqFirstOrDefault</td><td>Person1000000</td><td>12,037,310.33 ns</td><td>35,552.594 ns</td><td>31,516.448 ns</td><td>-</td><td>-</td><td>-</td><td>120 B</td>
+</tr><tr><td>FindWithLinqFind</td><td>Person333342</td><td>12,884,908.67 ns</td><td>94,337.226 ns</td><td>88,243.100 ns</td><td>78.1250</td><td>78.1250</td><td>78.1250</td><td>8000144 B</td>
+</tr><tr><td>FindByManualParallelTasksByProcessorCount</td><td>Person9</td><td>15,837,798.72 ns</td><td>151,599.525 ns</td><td>141,806.289 ns</td><td>62.5000</td><td>62.5000</td><td>62.5000</td><td>8001088 B</td>
+</tr><tr><td>FindWithLinqFind</td><td>Person666675</td><td>16,320,977.23 ns</td><td>97,874.135 ns</td><td>91,551.527 ns</td><td>78.1250</td><td>78.1250</td><td>78.1250</td><td>8000144 B</td>
+</tr><tr><td>FindByManualParallelTasksBy20Count</td><td>Person9</td><td>16,377,884.34 ns</td><td>105,943.831 ns</td><td>93,916.447 ns</td><td>62.5000</td><td>62.5000</td><td>62.5000</td><td>8002432 B</td>
+</tr><tr><td>FindByManualParallelTasksBy50Count</td><td>Person9</td><td>16,494,646.45 ns</td><td>90,503.530 ns</td><td>84,657.058 ns</td><td>62.5000</td><td>62.5000</td><td>62.5000</td><td>8005792 B</td>
+</tr><tr><td>FindByManualParallelTasksBy50Count</td><td>Person1000000</td><td>16,700,419.81 ns</td><td>134,696.367 ns</td><td>125,995.066 ns</td><td>62.5000</td><td>62.5000</td><td>62.5000</td><td>8005792 B</td>
+</tr><tr><td>FindByManualParallelTasksByProcessorCount</td><td>Person666675</td><td>16,903,175.92 ns</td><td>155,510.215 ns</td><td>145,464.352 ns</td><td>62.5000</td><td>62.5000</td><td>62.5000</td><td>8001088 B</td>
+</tr><tr><td>FindByManualParallelTasksBy20Count</td><td>Person666675</td><td>17,114,717.86 ns</td><td>100,634.353 ns</td><td>94,133.437 ns</td><td>62.5000</td><td>62.5000</td><td>62.5000</td><td>8002432 B</td>
+</tr><tr><td>FindByManualParallelTasksBy20Count</td><td>Person1000000</td><td>17,122,924.07 ns</td><td>209,244.343 ns</td><td>195,727.289 ns</td><td>62.5000</td><td>62.5000</td><td>62.5000</td><td>8002432 B</td>
+</tr><tr><td>FindByManualParallelTasksByProcessorCount</td><td>Person333342</td><td>17,155,781.56 ns</td><td>38,628.656 ns</td><td>36,133.269 ns</td><td>62.5000</td><td>62.5000</td><td>62.5000</td><td>8001088 B</td>
+</tr><tr><td>FindWithLinqFind</td><td>Person1000000</td><td>17,195,722.87 ns</td><td>105,953.639 ns</td><td>99,109.099 ns</td><td>62.5000</td><td>62.5000</td><td>62.5000</td><td>8000144 B</td>
+</tr><tr><td>FindByManualParallelTasksByProcessorCount</td><td>Person1000000</td><td>17,201,649.02 ns</td><td>110,137.239 ns</td><td>97,633.794 ns</td><td>62.5000</td><td>62.5000</td><td>62.5000</td><td>8001088 B</td>
+</tr><tr><td>FindByManualParallelTasksBy50Count</td><td>Person666675</td><td>17,344,049.82 ns</td><td>72,839.538 ns</td><td>68,134.149 ns</td><td>62.5000</td><td>62.5000</td><td>62.5000</td><td>8005792 B</td>
+</tr><tr><td>FindByManualParallelTasksBy20Count</td><td>Person333342</td><td>17,372,933.40 ns</td><td>107,789.984 ns</td><td>95,553.013 ns</td><td>62.5000</td><td>62.5000</td><td>62.5000</td><td>8002432 B</td>
+</tr><tr><td>FindByManualParallelTasksBy50Count</td><td>Person333342</td><td>17,459,543.47 ns</td><td>79,005.715 ns</td><td>73,901.995 ns</td><td>62.5000</td><td>62.5000</td><td>62.5000</td><td>8005792 B</td>
+</tr></tbody></table>
+</body>
+</html>

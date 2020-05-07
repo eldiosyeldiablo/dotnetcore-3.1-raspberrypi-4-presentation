@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>StringMutatePerformance.StringFormatRunner-20200510-150509</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.12.0, OS=Windows 10.0.18362
+Intel Core i7-6820HQ CPU 2.70GHz (Skylake), 1 CPU, 8 logical and 4 physical cores
+.NET Core SDK=3.1.201
+  [Host]     : .NET Core 3.1.3 (CoreCLR 4.700.20.11803, CoreFX 4.700.20.12001), X64 RyuJIT
+  Job-LCRCWL : .NET Core 3.1.3 (CoreCLR 4.700.20.11803, CoreFX 4.700.20.12001), X64 RyuJIT
+</code></pre>
+<pre><code>Runtime=.NET Core 3.1  
+</code></pre>
+
+<table>
+<thead><tr><th>                         Method</th><th>CountToAppend</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Median</th><th>Ratio</th><th>RatioSD</th><th>Gen 0</th><th>Gen 1</th><th>Gen 2</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>StringConcatPatternSomeStrings</td><td>1</td><td>39.91 ns</td><td>0.890 ns</td><td>1.627 ns</td><td>39.59 ns</td><td>1.01</td><td>0.04</td><td>0.0401</td><td>-</td><td>-</td><td>168 B</td>
+</tr><tr><td>StringConcatPattern</td><td>1</td><td>40.46 ns</td><td>0.706 ns</td><td>0.660 ns</td><td>40.18 ns</td><td>1.00</td><td>0.00</td><td>0.0401</td><td>-</td><td>-</td><td>168 B</td>
+</tr><tr><td>StringInterpolationPatternAllStrings</td><td>1</td><td>42.25 ns</td><td>0.929 ns</td><td>1.877 ns</td><td>41.77 ns</td><td>1.05</td><td>0.06</td><td>0.0401</td><td>-</td><td>-</td><td>168 B</td>
+</tr><tr><td>StringFormatPattern</td><td>1</td><td>283.20 ns</td><td>5.746 ns</td><td>6.841 ns</td><td>281.95 ns</td><td>6.94</td><td>0.22</td><td>0.0401</td><td>-</td><td>-</td><td>168 B</td>
+</tr><tr><td>StringInterpolationPatternSomeStrings</td><td>1</td><td>311.19 ns</td><td>5.944 ns</td><td>6.845 ns</td><td>311.47 ns</td><td>7.70</td><td>0.22</td><td>0.0477</td><td>-</td><td>-</td><td>200 B</td>
+</tr><tr><td>StringBuilderPattern</td><td>1</td><td>413.82 ns</td><td>15.654 ns</td><td>44.663 ns</td><td>398.83 ns</td><td>11.45</td><td>1.25</td><td>0.1774</td><td>-</td><td>-</td><td>744 B</td>
+</tr><tr><td>StringConcatPatternSomeStrings</td><td>2</td><td>71.55 ns</td><td>0.603 ns</td><td>0.504 ns</td><td>71.66 ns</td><td>0.96</td><td>0.02</td><td>0.0726</td><td>-</td><td>-</td><td>304 B</td>
+</tr><tr><td>StringInterpolationPatternAllStrings</td><td>2</td><td>72.27 ns</td><td>0.818 ns</td><td>0.765 ns</td><td>72.25 ns</td><td>0.97</td><td>0.02</td><td>0.0726</td><td>-</td><td>-</td><td>304 B</td>
+</tr><tr><td>StringConcatPattern</td><td>2</td><td>74.66 ns</td><td>1.543 ns</td><td>1.585 ns</td><td>74.82 ns</td><td>1.00</td><td>0.00</td><td>0.0726</td><td>-</td><td>-</td><td>304 B</td>
+</tr><tr><td>StringFormatPattern</td><td>2</td><td>305.61 ns</td><td>4.848 ns</td><td>4.534 ns</td><td>305.39 ns</td><td>4.10</td><td>0.12</td><td>0.0572</td><td>-</td><td>-</td><td>240 B</td>
+</tr><tr><td>StringInterpolationPatternSomeStrings</td><td>2</td><td>348.06 ns</td><td>7.912 ns</td><td>7.013 ns</td><td>347.19 ns</td><td>4.67</td><td>0.12</td><td>0.0648</td><td>-</td><td>-</td><td>272 B</td>
+</tr><tr><td>StringBuilderPattern</td><td>2</td><td>434.64 ns</td><td>4.694 ns</td><td>4.161 ns</td><td>433.91 ns</td><td>5.83</td><td>0.16</td><td>0.1950</td><td>-</td><td>-</td><td>816 B</td>
+</tr><tr><td>StringConcatPatternSomeStrings</td><td>3</td><td>86.65 ns</td><td>0.931 ns</td><td>0.825 ns</td><td>86.53 ns</td><td>0.99</td><td>0.01</td><td>0.0918</td><td>-</td><td>-</td><td>384 B</td>
+</tr><tr><td>StringConcatPattern</td><td>3</td><td>87.41 ns</td><td>1.167 ns</td><td>1.035 ns</td><td>87.39 ns</td><td>1.00</td><td>0.00</td><td>0.0918</td><td>-</td><td>-</td><td>384 B</td>
+</tr><tr><td>StringInterpolationPatternAllStrings</td><td>3</td><td>88.22 ns</td><td>1.627 ns</td><td>2.673 ns</td><td>87.55 ns</td><td>1.02</td><td>0.03</td><td>0.0918</td><td>-</td><td>-</td><td>384 B</td>
+</tr><tr><td>StringFormatPattern</td><td>3</td><td>408.42 ns</td><td>3.302 ns</td><td>2.927 ns</td><td>407.94 ns</td><td>4.67</td><td>0.07</td><td>0.0877</td><td>-</td><td>-</td><td>368 B</td>
+</tr><tr><td>StringInterpolationPatternSomeStrings</td><td>3</td><td>408.58 ns</td><td>5.402 ns</td><td>4.511 ns</td><td>409.61 ns</td><td>4.67</td><td>0.07</td><td>0.0954</td><td>-</td><td>-</td><td>400 B</td>
+</tr><tr><td>StringBuilderPattern</td><td>3</td><td>568.54 ns</td><td>12.553 ns</td><td>23.268 ns</td><td>560.34 ns</td><td>6.58</td><td>0.28</td><td>0.3109</td><td>-</td><td>-</td><td>1304 B</td>
+</tr><tr><td>StringConcatPattern</td><td>4</td><td>101.44 ns</td><td>2.076 ns</td><td>2.307 ns</td><td>101.12 ns</td><td>1.00</td><td>0.00</td><td>0.1109</td><td>-</td><td>-</td><td>464 B</td>
+</tr><tr><td>StringConcatPatternSomeStrings</td><td>4</td><td>102.52 ns</td><td>2.085 ns</td><td>1.848 ns</td><td>101.73 ns</td><td>1.01</td><td>0.03</td><td>0.1109</td><td>-</td><td>-</td><td>464 B</td>
+</tr><tr><td>StringInterpolationPatternAllStrings</td><td>4</td><td>102.59 ns</td><td>2.066 ns</td><td>2.459 ns</td><td>101.72 ns</td><td>1.01</td><td>0.04</td><td>0.1109</td><td>-</td><td>-</td><td>464 B</td>
+</tr><tr><td>StringFormatPattern</td><td>4</td><td>423.91 ns</td><td>3.766 ns</td><td>3.523 ns</td><td>422.22 ns</td><td>4.16</td><td>0.11</td><td>0.1068</td><td>-</td><td>-</td><td>448 B</td>
+</tr><tr><td>StringInterpolationPatternSomeStrings</td><td>4</td><td>497.47 ns</td><td>14.137 ns</td><td>11.805 ns</td><td>495.40 ns</td><td>4.88</td><td>0.19</td><td>0.1144</td><td>-</td><td>-</td><td>480 B</td>
+</tr><tr><td>StringBuilderPattern</td><td>4</td><td>617.27 ns</td><td>12.384 ns</td><td>10.978 ns</td><td>614.33 ns</td><td>6.07</td><td>0.20</td><td>0.3300</td><td>-</td><td>-</td><td>1384 B</td>
+</tr><tr><td>StringConcatPattern</td><td>5</td><td>119.33 ns</td><td>2.277 ns</td><td>2.019 ns</td><td>118.84 ns</td><td>1.00</td><td>0.00</td><td>0.1299</td><td>-</td><td>-</td><td>544 B</td>
+</tr><tr><td>StringInterpolationPatternAllStrings</td><td>5</td><td>119.50 ns</td><td>1.696 ns</td><td>1.587 ns</td><td>119.29 ns</td><td>1.00</td><td>0.02</td><td>0.1299</td><td>-</td><td>-</td><td>544 B</td>
+</tr><tr><td>StringConcatPatternSomeStrings</td><td>5</td><td>119.79 ns</td><td>2.259 ns</td><td>2.113 ns</td><td>119.25 ns</td><td>1.00</td><td>0.02</td><td>0.1299</td><td>-</td><td>-</td><td>544 B</td>
+</tr><tr><td>StringFormatPattern</td><td>5</td><td>636.03 ns</td><td>7.301 ns</td><td>6.472 ns</td><td>635.66 ns</td><td>5.33</td><td>0.10</td><td>0.3748</td><td>-</td><td>-</td><td>1568 B</td>
+</tr><tr><td>StringBuilderPattern</td><td>5</td><td>667.53 ns</td><td>10.648 ns</td><td>8.892 ns</td><td>668.62 ns</td><td>5.59</td><td>0.14</td><td>0.3500</td><td>-</td><td>-</td><td>1464 B</td>
+</tr><tr><td>StringInterpolationPatternSomeStrings</td><td>5</td><td>701.95 ns</td><td>10.755 ns</td><td>8.981 ns</td><td>701.65 ns</td><td>5.88</td><td>0.12</td><td>0.3920</td><td>-</td><td>-</td><td>1640 B</td>
+</tr><tr><td>StringConcatPatternSomeStrings</td><td>6</td><td>132.75 ns</td><td>1.195 ns</td><td>0.998 ns</td><td>132.22 ns</td><td>1.00</td><td>0.02</td><td>0.1490</td><td>-</td><td>-</td><td>624 B</td>
+</tr><tr><td>StringConcatPattern</td><td>6</td><td>133.48 ns</td><td>2.352 ns</td><td>2.085 ns</td><td>133.26 ns</td><td>1.00</td><td>0.00</td><td>0.1490</td><td>-</td><td>-</td><td>624 B</td>
+</tr><tr><td>StringInterpolationPatternAllStrings</td><td>6</td><td>135.55 ns</td><td>2.440 ns</td><td>2.283 ns</td><td>135.31 ns</td><td>1.02</td><td>0.02</td><td>0.1490</td><td>-</td><td>-</td><td>624 B</td>
+</tr><tr><td>StringFormatPattern</td><td>6</td><td>690.19 ns</td><td>14.209 ns</td><td>34.855 ns</td><td>676.15 ns</td><td>5.40</td><td>0.45</td><td>0.4110</td><td>-</td><td>-</td><td>1720 B</td>
+</tr><tr><td>StringBuilderPattern</td><td>6</td><td>695.56 ns</td><td>9.781 ns</td><td>7.636 ns</td><td>691.86 ns</td><td>5.22</td><td>0.10</td><td>0.3691</td><td>-</td><td>-</td><td>1544 B</td>
+</tr><tr><td>StringInterpolationPatternSomeStrings</td><td>6</td><td>696.50 ns</td><td>12.156 ns</td><td>10.151 ns</td><td>693.39 ns</td><td>5.22</td><td>0.12</td><td>0.4187</td><td>-</td><td>-</td><td>1752 B</td>
+</tr><tr><td>StringConcatPattern</td><td>7</td><td>149.72 ns</td><td>1.855 ns</td><td>1.735 ns</td><td>149.03 ns</td><td>1.00</td><td>0.00</td><td>0.1681</td><td>-</td><td>-</td><td>704 B</td>
+</tr><tr><td>StringInterpolationPatternAllStrings</td><td>7</td><td>149.86 ns</td><td>3.155 ns</td><td>3.098 ns</td><td>148.68 ns</td><td>1.00</td><td>0.02</td><td>0.1681</td><td>-</td><td>-</td><td>704 B</td>
+</tr><tr><td>StringConcatPatternSomeStrings</td><td>7</td><td>152.26 ns</td><td>2.468 ns</td><td>2.187 ns</td><td>151.14 ns</td><td>1.02</td><td>0.02</td><td>0.1681</td><td>-</td><td>-</td><td>704 B</td>
+</tr><tr><td>StringFormatPattern</td><td>7</td><td>705.50 ns</td><td>8.410 ns</td><td>7.866 ns</td><td>703.90 ns</td><td>4.71</td><td>0.07</td><td>0.4530</td><td>-</td><td>-</td><td>1896 B</td>
+</tr><tr><td>StringInterpolationPatternSomeStrings</td><td>7</td><td>756.95 ns</td><td>10.426 ns</td><td>8.706 ns</td><td>756.80 ns</td><td>5.06</td><td>0.08</td><td>0.4606</td><td>-</td><td>-</td><td>1928 B</td>
+</tr><tr><td>StringBuilderPattern</td><td>7</td><td>810.62 ns</td><td>16.138 ns</td><td>13.476 ns</td><td>808.26 ns</td><td>5.42</td><td>0.09</td><td>0.5426</td><td>-</td><td>-</td><td>2272 B</td>
+</tr><tr><td>StringConcatPattern</td><td>8</td><td>163.73 ns</td><td>2.312 ns</td><td>2.050 ns</td><td>163.75 ns</td><td>1.00</td><td>0.00</td><td>0.1874</td><td>-</td><td>-</td><td>784 B</td>
+</tr><tr><td>StringConcatPatternSomeStrings</td><td>8</td><td>165.57 ns</td><td>3.202 ns</td><td>2.995 ns</td><td>164.26 ns</td><td>1.01</td><td>0.02</td><td>0.1874</td><td>-</td><td>-</td><td>784 B</td>
+</tr><tr><td>StringInterpolationPatternAllStrings</td><td>8</td><td>172.09 ns</td><td>4.307 ns</td><td>4.608 ns</td><td>171.82 ns</td><td>1.05</td><td>0.04</td><td>0.1874</td><td>-</td><td>-</td><td>784 B</td>
+</tr><tr><td>StringFormatPattern</td><td>8</td><td>795.37 ns</td><td>15.822 ns</td><td>28.123 ns</td><td>793.78 ns</td><td>4.73</td><td>0.16</td><td>0.4930</td><td>-</td><td>-</td><td>2064 B</td>
+</tr><tr><td>StringBuilderPattern</td><td>8</td><td>854.73 ns</td><td>10.298 ns</td><td>9.632 ns</td><td>853.85 ns</td><td>5.22</td><td>0.09</td><td>0.5617</td><td>-</td><td>-</td><td>2352 B</td>
+</tr><tr><td>StringInterpolationPatternSomeStrings</td><td>8</td><td>856.39 ns</td><td>10.137 ns</td><td>8.986 ns</td><td>855.95 ns</td><td>5.23</td><td>0.10</td><td>0.5007</td><td>-</td><td>-</td><td>2096 B</td>
+</tr><tr><td>StringInterpolationPatternAllStrings</td><td>9</td><td>185.90 ns</td><td>1.958 ns</td><td>1.529 ns</td><td>185.97 ns</td><td>0.99</td><td>0.02</td><td>0.2065</td><td>-</td><td>-</td><td>864 B</td>
+</tr><tr><td>StringConcatPatternSomeStrings</td><td>9</td><td>187.67 ns</td><td>3.794 ns</td><td>3.549 ns</td><td>186.72 ns</td><td>1.00</td><td>0.02</td><td>0.2065</td><td>-</td><td>-</td><td>864 B</td>
+</tr><tr><td>StringConcatPattern</td><td>9</td><td>188.13 ns</td><td>2.641 ns</td><td>2.470 ns</td><td>187.87 ns</td><td>1.00</td><td>0.00</td><td>0.2065</td><td>-</td><td>-</td><td>864 B</td>
+</tr><tr><td>StringFormatPattern</td><td>9</td><td>870.01 ns</td><td>26.997 ns</td><td>22.544 ns</td><td>860.43 ns</td><td>4.63</td><td>0.11</td><td>0.5350</td><td>-</td><td>-</td><td>2240 B</td>
+</tr><tr><td>StringInterpolationPatternSomeStrings</td><td>9</td><td>890.27 ns</td><td>15.950 ns</td><td>14.140 ns</td><td>889.36 ns</td><td>4.73</td><td>0.08</td><td>0.5426</td><td>-</td><td>-</td><td>2272 B</td>
+</tr><tr><td>StringBuilderPattern</td><td>9</td><td>949.98 ns</td><td>18.627 ns</td><td>24.221 ns</td><td>946.18 ns</td><td>5.04</td><td>0.19</td><td>0.5798</td><td>-</td><td>-</td><td>2432 B</td>
+</tr><tr><td>StringConcatPatternSomeStrings</td><td>10</td><td>203.52 ns</td><td>2.822 ns</td><td>2.502 ns</td><td>203.70 ns</td><td>1.00</td><td>0.03</td><td>0.2255</td><td>-</td><td>-</td><td>944 B</td>
+</tr><tr><td>StringConcatPattern</td><td>10</td><td>203.53 ns</td><td>3.964 ns</td><td>4.071 ns</td><td>203.53 ns</td><td>1.00</td><td>0.00</td><td>0.2255</td><td>-</td><td>-</td><td>944 B</td>
+</tr><tr><td>StringInterpolationPatternAllStrings</td><td>10</td><td>208.19 ns</td><td>3.989 ns</td><td>3.536 ns</td><td>208.30 ns</td><td>1.02</td><td>0.03</td><td>0.2255</td><td>-</td><td>-</td><td>944 B</td>
+</tr><tr><td>StringInterpolationPatternSomeStrings</td><td>10</td><td>968.31 ns</td><td>19.156 ns</td><td>21.292 ns</td><td>969.79 ns</td><td>4.75</td><td>0.13</td><td>0.5836</td><td>-</td><td>-</td><td>2448 B</td>
+</tr><tr><td>StringBuilderPattern</td><td>10</td><td>972.94 ns</td><td>18.747 ns</td><td>20.837 ns</td><td>972.65 ns</td><td>4.79</td><td>0.14</td><td>0.5989</td><td>-</td><td>-</td><td>2512 B</td>
+</tr><tr><td>StringFormatPattern</td><td>10</td><td>977.35 ns</td><td>19.642 ns</td><td>34.914 ns</td><td>983.06 ns</td><td>4.71</td><td>0.22</td><td>0.5760</td><td>-</td><td>-</td><td>2416 B</td>
+</tr></tbody></table>
+</body>
+</html>
